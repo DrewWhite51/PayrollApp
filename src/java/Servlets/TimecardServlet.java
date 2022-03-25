@@ -12,6 +12,8 @@ import data_access_layer.TimeCardDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,11 +26,7 @@ public class TimecardServlet extends HttpServlet {
        protected void doPost(HttpServletRequest request, 
                           HttpServletResponse response) 
                           throws ServletException, IOException {
-           
-
-            
-
-            
+                       
             String successUrl = "/timecard.jsp";
 
    
@@ -82,14 +80,44 @@ public class TimecardServlet extends HttpServlet {
                 } else if (request.getParameter("editTimecard") != null) {
                     
                     String timeCardToEdit = request.getParameter("editTimecardNumber");
+                    String newDate =  request.getParameter("editDate");
+                    String newHoursStr = request.getParameter("editEmpHoursWorked");
+                    String newOverTimeStr = request.getParameter("editEmpOverTimeHours");
+                    
+                    int newHours = Integer.parseInt(newHoursStr);
+                    int newOverTimeHours = Integer.parseInt(newOverTimeStr);
+                    
                     
                         
                     System.out.println("Editing timecard with a table index of: " + timeCardToEdit);
+                    
+                    int editIndex = Integer.parseInt(timeCardToEdit);
+                    
+                    
+                    int arrayIndex = editIndex-1;
+                    
+                        
+                    System.out.println(arrayIndex);
+                    
+                        
+                    System.out.println(newTime.get(arrayIndex));
+                    
+//                    Setting the timecard object to the new values
+                    
+                    newTime.get(arrayIndex).setDate(newDate);
+                    newTime.get(arrayIndex).setHoursWorked(newHours);
+                    newTime.get(arrayIndex).setOvertimeHours(newOverTimeHours);
+                    
+                        
+                    System.out.println(newTime.get(arrayIndex));
+                        
+                        
                         
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
                         
-                        
+                       
+                    break;
                     
                 }
             }

@@ -125,7 +125,7 @@
                 <table align="center" cellpadding="6">
                     <tr>
                         <td>
-                            Enter timecard number to edit:
+                            Enter timecard number to update:
                         </td>
                         <td>
                             <input type="text" id="editTimecardNumber" name="editTimecardNumber">
