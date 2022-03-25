@@ -165,8 +165,19 @@
             
         </form>
         
+        <c:set var="totalHoursWorked" value="${0}"/>
+        <c:forEach var="timecard" items="${empTimeCards}">
+            <c:set var="totalHoursWorked" value="${totalHoursWorked + timecard.hoursWorked}" />
+        </c:forEach>
         
-
+        <h1>${totalHoursWorked}</h1>
+        
+        <c:set var="totalOverTimeHours" value="${0}"/>
+        <c:forEach var="timecard" items="${empTimeCards}">
+            <c:set var="totalOverTimeHours" value="${totalOverTimeHours + timecard.overtimeHours}" />
+        </c:forEach>
+        
+        <h1>${totalOverTimeHours}</h1>
         
  
 
