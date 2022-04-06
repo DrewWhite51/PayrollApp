@@ -19,19 +19,7 @@ import java.util.ArrayList;
 
 public class TimeCardDatabase {
     static ArrayList<Timecard> timecards_arr = new ArrayList<Timecard>();
-// Test data to prove proof of concept for the first lab
-//    static Timecard h1_timecard = new Timecard("2/7/22",4,40,10);
-//    static Timecard h5_timecard = new Timecard("2/7/22",4,50,10);
-//    static Timecard h2_timecard = new Timecard("2/7/22",5,60,10);
-//    static Timecard h3_timecard = new Timecard("2/7/22",6,70,10);
-//    Static method to initialize data in the databse
-//    static {
-//        timecards_arr.add(h1_timecard);
-//        timecards_arr.add(h5_timecard);
-//        timecards_arr.add(h2_timecard);
-//        timecards_arr.add(h3_timecard);
-//    }
-    
+
     public static void init() {          
         try {
                //Connect to the database
