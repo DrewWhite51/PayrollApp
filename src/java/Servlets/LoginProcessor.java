@@ -33,6 +33,11 @@ public class LoginProcessor extends HttpServlet {
            String userID = request.getParameter("userID");
            String password = request.getParameter("password");
            
+//           Init the data from the SQL database
+           EmployeeDatabase.init();
+           
+           
+           
 
            
 

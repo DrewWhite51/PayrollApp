@@ -10,26 +10,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class EmployeeDatabase {
     // Initializing Arraylist for all employees
     static ArrayList<Employee> employee_arr = new ArrayList<Employee>();
-    
-//    static {
-//        salary_employees_arr.add(s1);
-//        salary_employees_arr.add(s2);
-//        salary_employees_arr.add(s3);
-//        hourly_employees_arr.add(h1);
-//        hourly_employees_arr.add(h2);
-//        hourly_employees_arr.add(h3);
-//
-//        employee_arr.add(s1);
-//        employee_arr.add(s2);
-//        employee_arr.add(s3);
-//        employee_arr.add(h1);
-//        employee_arr.add(h2);
-//        employee_arr.add(h3);
-//    }
+
     
     public static void init() {          
         try {
@@ -40,18 +26,23 @@ public class EmployeeDatabase {
             Statement cmd =  con.createStatement();
             ResultSet rs = cmd.executeQuery("SELECT * FROM Employee");
             while (rs.next()) {
-//                String codes = rs.getString("Code");
-//                String description = rs.getString("Description");
-//                double price = rs.getDouble("Price");
+                String firstNames = rs.getString("FirstName");
+                String lastNames = rs.getString("LastName");
+                int employeeID = rs.getInt("EmployeeId");
+                double ssn = rs.getDouble("SSN");
+                String userId = rs.getString("UserId");
+                String password = rs.getString("Password");
+                double hourlyRate = rs.getDouble("HourlyRate");
+                double overtimeRate = rs.getDouble("OvertimeRate");
+                double salary = rs.getDouble("Salary");
 
-//                Product p;
-//                           
-//                p = new Product();
-//                p.setCode(codes);
-//                p.setDescription(description);
-//                p.setPrice(price);
-//                products.add(p);
-                
+                if (hourlyRate == 0) {
+                    SalaryEmployee salEmp = new SalaryEmployee(salary,firstNames,lastNames,employeeID,ssn,userId,password);
+                    employee_arr.add(salEmp);
+                } else {
+                    HourlyEmployee hourEmp = new HourlyEmployee(hourlyRate,overtimeRate,firstNames,lastNames,employeeID,ssn,userId,password);
+                    employee_arr.add(hourEmp);
+                }   
             }
             } catch(SQLException error) {
                 System.out.println("ERROR CAUGHT");
@@ -60,6 +51,7 @@ public class EmployeeDatabase {
                 
     }
     
+
 
 
 // Method that returns the arraylist for all employees

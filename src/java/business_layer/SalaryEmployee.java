@@ -16,6 +16,8 @@ public class SalaryEmployee extends Employee {
         super(firstName, lastName, employeeId, socialSecurityNumber, userID, password);
         this.annualSalary = annualSalary;
     }
+
+
 //    Getter for annual salary
     public double getAnnualSalary() {
         return annualSalary;

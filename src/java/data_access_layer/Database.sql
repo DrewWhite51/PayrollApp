@@ -10,10 +10,9 @@
 
 -- DROP TABLE Employee
 
-
 -- CREATE TABLE Employee (
---   Code VARCHAR(10) NOT NULL,
---   Description VARCHAR(50) NOT NULL,
+--   FirstName VARCHAR(50) NOT NULL,
+--   LastName VARCHAR(50) NOT NULL,
 --   EmployeeId INT NOT NULL,
 --   SSN DOUBLE NOT NULL,
 --   UserId VARCHAR(50) NOT NULL,
@@ -25,6 +24,17 @@
 --   PRIMARY KEY(EmployeeID) 
 -- );
 
-SELECT * FROM Employee;
 
+-- INSERT INTO Employee 
+--   (FirstName, LastName, EmployeeId, SSN, UserId, Password, HourlyRate, OvertimeRate, Salary)
+-- VALUES 
+--   ('Drew', 'White', 1, 6789, 'User4', 'user4', NULL, NULL, 100000),
+--   ('Dylan', 'White', 2, 5837, 'User2', 'user2', NULL, NULL, 70000),
+--   ('Rachael', 'White', 3, 3813, 'User3', 'user3', NULL, NULL, 50000),
+--   ('Ali', 'Vanzanr', 4, 3795, 'User1', 'user1', 20, 30, NULL),
+--   ('Deonna', 'Hunt', 5, 3859, 'User5', 'user5', 30, 50, NULL),
+--   ('Rich', 'White', 6, 4810, 'User6', 'user6', 40, 60, NULL);
+
+
+SELECT * FROM Employee;
 
