@@ -28,7 +28,8 @@ public class TimecardServlet extends HttpServlet {
                           throws ServletException, IOException {
                        
             String successUrl = "/timecard.jsp";
-
+            
+ 
    
 //            GEtting the current session
             HttpSession httpSession = request.getSession(false); 

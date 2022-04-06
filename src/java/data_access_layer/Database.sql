@@ -36,5 +36,25 @@
 --   ('Rich', 'White', 6, 4810, 'User6', 'user6', 40, 60, NULL);
 
 
-SELECT * FROM Employee;
+-- create table TimeCard(
+--     TimecardDate VARCHAR(50) NOT NULL,
+--     EmployeeId Double NOT NULL,
+--     HoursWorked INT NOT NULL,
+--     OvertimeHours INT NOT NULL
+-- )
+-- 
+
+
+-- INSERT INTO TimeCard (
+--     TimecardDate, EmployeeId, HoursWorked, OvertimeHours
+-- ) VALUES
+--     ('2/7/22',4,40,10),
+--     ('2/7/22',4,50,10),
+--     ('2/7/22',5,60,10),
+--     ('2/7/22',6,70,10);
+
+
+-- SELECT * FROM Employee;
+
+select * from TimeCard;
 

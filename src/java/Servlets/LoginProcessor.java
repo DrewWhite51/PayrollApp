@@ -35,6 +35,7 @@ public class LoginProcessor extends HttpServlet {
            
 //           Init the data from the SQL database
            EmployeeDatabase.init();
+           TimeCardDatabase.init();
            
            
            
