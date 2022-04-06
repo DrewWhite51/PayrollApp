@@ -15,7 +15,7 @@
     <title>CIS640 Assignment 1</title>
     <link rel="stylesheet" href="css/jsp_styles.css" type="text/css"/>    
     <style>
-        body {background-color: #f1faee;}
+        body {background-color: #e9ecef;}
         h1   {text-align: center; margin-left:5rem; margin-right:5rem;}
         table{border-collapse:collapse;border:1px solid #FF0000;}
         .btnDiv{

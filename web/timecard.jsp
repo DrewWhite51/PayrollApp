@@ -8,14 +8,18 @@
 <%@page import="business_layer.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Timecard Page</title>
         <style>
-            .btn-group input {
-                background-color: #04AA6D; /* Green background */
+            
+            body {background-color: #e9ecef;}
+            
+            
+            .button input {
                 border: 1px solid; /* Green border */
                 color: white; /* White text */
                 cursor: pointer; /* Pointer/hand icon */
@@ -25,12 +29,8 @@
             .btn-group input:not(:last-child) {
                  border-bottom: none; /* Prevent double borders */
             }
-
-            /* Add a background color on hover */
-            .btn-group input:hover {
-                background-color: #3e8e41;
-            }
-              
+            
+            
             table {  
                 border: solid;  
                 text-align:center;  
@@ -47,13 +47,16 @@
                 flex-direction: row;
             } 
             .tableDivOne {
-                display: inline-block;
+                display: flex;
+                justify-content: center; /* align horizontal */
+                align-items: center; /* align vertical */
+                padding: 20px;
             }
             .tableDivTwo {
-                display: inline-block;
+                padding: 20px;
             }
             .tableDivThree {
-                display: inline-block;
+                padding: 20px;
             }
         </style>
     </head>
@@ -62,6 +65,8 @@
 
         <h1>Displaying time cards for: </h1>
         <h1>${currentUser.firstName} ${currentUser.lastName}</h1>
+        
+        
        
         
         <form action="timecard" method='post' class="btn-group" class="editTable">
@@ -82,7 +87,7 @@
                             <td>${timecard.date}</td>
                             <td>${timecard.hoursWorked}</td>
                             <td>${timecard.overtimeHours}</td>
-                            <td><input type="submit" value="Delete" name="deleteRow${loop.index}"></td>
+                            <td><input class="button" type="submit" value="Delete" name="deleteRow${loop.index}"></td>
                         </tr>
                       </c:forEach>
                     </tbody>
@@ -116,7 +121,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Add" name="addTimecard">
+                            Add record:
+                        </td>
+                        <td>
+                            <input class="button" type="submit" value="Add" name="addTimecard">
                         </td>
                     </tr>
                 </table>
@@ -157,7 +165,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Edit" name="editTimecard">
+                            Edit record:
+                        </td>
+                        <td>
+                            <input class="button" type="submit" value="Edit" name="editTimecard">
                         </td>
                     </tr>
                 </table>
@@ -170,14 +181,14 @@
             <c:set var="totalHoursWorked" value="${totalHoursWorked + timecard.hoursWorked}" />
         </c:forEach>
         
-        <h1>${totalHoursWorked}</h1>
+        <h1>Total hours for ${currentUser.firstName} ${currentUser.lastName}:  ${totalHoursWorked}</h1>
         
         <c:set var="totalOverTimeHours" value="${0}"/>
         <c:forEach var="timecard" items="${empTimeCards}">
             <c:set var="totalOverTimeHours" value="${totalOverTimeHours + timecard.overtimeHours}" />
         </c:forEach>
         
-        <h1>${totalOverTimeHours}</h1>
+        <h1>Total hours for ${currentUser.firstName} ${currentUser.lastName}:  ${totalOverTimeHours}</h1>
         
  
 

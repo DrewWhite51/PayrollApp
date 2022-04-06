@@ -8,11 +8,3 @@ and open the template in the editor.
     Author     : drewm
 */
 
-h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 4rem;
-  color: #ee9b00;
-  background-color: yellow;
-}
