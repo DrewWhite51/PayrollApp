@@ -52,6 +52,7 @@ public class TimecardServlet extends HttpServlet {
                     if (request.getParameter(str+counterStr) != null){
         //             Removig the index of the timecard selected
                         newTime.remove(i);
+                        
         //                Showing results in console 
                         System.out.println(newTime);
 

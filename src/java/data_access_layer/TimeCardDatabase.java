@@ -48,6 +48,14 @@ public class TimeCardDatabase {
                 
     }
     
+    public static void deleteTimecardFromDatabase(){
+        
+    }
+    
+    public static void updateTimecard(){
+        
+    }
+    
     public static void readFullDatabase() {
         try {
                //Connect to the database
