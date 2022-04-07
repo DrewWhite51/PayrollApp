@@ -65,15 +65,17 @@ public class TimecardServlet extends HttpServlet {
                     String date = request.getParameter("date");
                     int hoursWorked = Integer.parseInt(request.getParameter("empHoursWorked"));
                     int overTimeHours = Integer.parseInt(request.getParameter("empOverTimeHours"));
+                    String empIdString = Integer.toString(user.employeeId);
                  
-                    Timecard newCard = new Timecard(date,user.employeeId,hoursWorked,overTimeHours);
+                    Timecard newCard = new Timecard(date,Double.valueOf(empIdString),hoursWorked,overTimeHours);
                     
-
+                   
                     newTime.add(newCard);
-                    
-                    System.out.println(newTime);
-                    
-                    System.out.println(newTime.size());
+
+                     
+                    TimeCardDatabase.createTimecard(date, Double.valueOf(empIdString), hoursWorked, overTimeHours);
+
+                    TimeCardDatabase.readFullDatabase();
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
                     
@@ -84,6 +86,7 @@ public class TimecardServlet extends HttpServlet {
                     String newDate =  request.getParameter("editDate");
                     String newHoursStr = request.getParameter("editEmpHoursWorked");
                     String newOverTimeStr = request.getParameter("editEmpOverTimeHours");
+                    
                     
                     int newHours = Integer.parseInt(newHoursStr);
                     int newOverTimeHours = Integer.parseInt(newOverTimeStr);
@@ -98,10 +101,7 @@ public class TimecardServlet extends HttpServlet {
                     int arrayIndex = editIndex-1;
                     
                         
-                    System.out.println(arrayIndex);
-                    
-                        
-                    System.out.println(newTime.get(arrayIndex));
+      
                     
 //                    Setting the timecard object to the new values
                     
@@ -110,10 +110,8 @@ public class TimecardServlet extends HttpServlet {
                     newTime.get(arrayIndex).setOvertimeHours(newOverTimeHours);
                     
                         
-                    System.out.println(newTime.get(arrayIndex));
                         
-                        
-                        
+                          
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
                         

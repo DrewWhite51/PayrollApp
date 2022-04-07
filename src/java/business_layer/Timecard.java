@@ -57,7 +57,10 @@ public class Timecard {
 // To string for timecard
     @Override
     public String toString() {
-        return "Timecard{" + "date=" + date + ", employeeId=" + employeeId + ", hoursWorked=" + hoursWorked + ", overtimeHours=" + overtimeHours + '}';
+        return "--------------------------------------------------------"
+                + System.lineSeparator()
+                + "Timecard{" + "date=" + date + ", employeeId=" + employeeId + ", hoursWorked=" + hoursWorked + ", overtimeHours=" + overtimeHours + '}'
+                + System.lineSeparator();
     }
     
     

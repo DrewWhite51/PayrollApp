@@ -9,6 +9,7 @@
  */
 
 -- DROP TABLE Employee
+-- DROP TABLE TimeCard;
 
 -- CREATE TABLE Employee (
 --   FirstName VARCHAR(50) NOT NULL,
@@ -34,15 +35,15 @@
 --   ('Ali', 'Vanzanr', 4, 3795, 'User1', 'user1', 20, 30, NULL),
 --   ('Deonna', 'Hunt', 5, 3859, 'User5', 'user5', 30, 50, NULL),
 --   ('Rich', 'White', 6, 4810, 'User6', 'user6', 40, 60, NULL);
-
-
+-- 
+-- 
 -- create table TimeCard(
 --     TimecardDate VARCHAR(50) NOT NULL,
 --     EmployeeId Double NOT NULL,
 --     HoursWorked INT NOT NULL,
 --     OvertimeHours INT NOT NULL
 -- )
--- 
+
 
 
 -- INSERT INTO TimeCard (

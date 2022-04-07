@@ -11,6 +11,7 @@ import business_layer.Timecard;
 import static data_access_layer.EmployeeDatabase.employee_arr;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,6 +46,61 @@ public class TimeCardDatabase {
                 System.err.println("Error:" + error.toString());
             }
                 
+    }
+    
+    public static void readFullDatabase() {
+        try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+               //Create a ResultSet
+            Statement cmd =  con.createStatement();
+            ResultSet rs = cmd.executeQuery("SELECT * FROM TimeCard");
+            while (rs.next()) {
+                String dates = rs.getString("TimecardDate");
+                double employeeIds = rs.getDouble("EmployeeId");
+                int hoursWorked = rs.getInt("HoursWorked");
+                int overtimeHours = rs.getInt("overtimeHours");
+                
+                Timecard time = new Timecard(dates,employeeIds,hoursWorked,overtimeHours);
+                
+                System.out.println(time.toString());
+                
+ 
+            }
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
+    }
+    
+    public static void createTimecard(String date, double empId, int workHours, int otHours) {
+        try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+               //Create a ResultSet
+            Statement cmd =  con.createStatement();
+            
+            long id = 0;
+            
+            PreparedStatement statement = con.prepareStatement("INSERT INTO Timecard"
+                    + "(TimecardDate,EmployeeId,HoursWorked,OvertimeHours)"
+                    + " VALUES (?,?,?,?)");
+            
+            statement.setString(1, date);
+            statement.setDouble(2, empId);
+            statement.setInt(3, workHours);
+            statement.setInt(4,otHours);
+            
+            statement.executeUpdate();
+
+
+            
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
     }
     
 //    Method to return the ArraryList of timecards
