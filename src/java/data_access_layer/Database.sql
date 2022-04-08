@@ -54,8 +54,7 @@
 --     ('2/7/22',5,60,10),
 --     ('2/7/22',6,70,10);
 
+SELECT * FROM Employee;
 
--- SELECT * FROM Employee;
-
-select * from TimeCard;
+-- select * from TimeCard;
 

@@ -40,6 +40,14 @@ public class LoginProcessor extends HttpServlet {
            
            EmployeeDatabase.readEmployeeDatabase();
            
+//           EmployeeDatabase.createEmployee("Test", "Emp", 
+//                   99, 1234567, "USER87", "user87", 5, 10, 0);
+//           
+//           EmployeeDatabase.createEmployee("Test12", "Emp12", 
+//                   50, 98765, "USER99", "user99", 0, 0, 1000);
+           
+           
+           
            
 
            

@@ -5,6 +5,7 @@ import business_layer.HourlyEmployee;
 import business_layer.SalaryEmployee;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,8 +53,39 @@ public class EmployeeDatabase {
     }
     
     
-    public static void createEmployee() {
-        
+    public static void createEmployee(String firstName, String lastName,
+            int employeeId, double ssn, String userId, String password,
+            double hourlyRate, double overtimeRate, double salary) {
+                try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+               //Create a ResultSet
+            Statement cmd =  con.createStatement();
+            
+            
+            PreparedStatement statement = con.prepareStatement("INSERT INTO Employee"
+                    + "(FirstName,LastName,EmployeeId,SSN,UserId,Password,HourlyRate,OvertimeRate,Salary)"
+                    + " VALUES (?,?,?,?,?,?,?,?,?)");
+            
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setInt(3, employeeId);
+            statement.setDouble(4, ssn);
+            statement.setString(5,userId);
+            statement.setString(6, password);
+            statement.setDouble(7,hourlyRate);
+            statement.setDouble(8,overtimeRate);
+            statement.setDouble(9,salary);
+            
+            statement.executeUpdate();
+
+
+            
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
     }
     
     public static void deleteEmployee() {
