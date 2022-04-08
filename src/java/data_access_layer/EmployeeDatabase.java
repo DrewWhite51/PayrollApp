@@ -88,8 +88,41 @@ public class EmployeeDatabase {
             }
     }
     
-    public static void deleteEmployee() {
-        
+    public static void deleteEmployee(String firstName, String lastName,
+            int employeeId, double ssn, String userId, String password,
+            double hourlyRate, double overtimeRate, double salary) {
+                try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+                  
+            String query = "delete from Employee where (FirstName = ? and "
+                    + "LastName = ? and "
+                    + "EmployeeId = ? and "
+                    + "SSN = ? and "
+                    + "UserId = ? and "
+                    + "Password = ? and "
+                    + "HourlyRate = ? and "
+                    + "OvertimeRate = ? and "
+                    + "Salary = ?)";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, firstName);
+            preparedStmt.setString(2, lastName);
+            preparedStmt.setInt(3, employeeId);
+            preparedStmt.setDouble(4, ssn);
+            preparedStmt.setString(5,userId);
+            preparedStmt.setString(6, password);
+            preparedStmt.setDouble(7,hourlyRate);
+            preparedStmt.setDouble(8,overtimeRate);
+            preparedStmt.setDouble(9,salary);
+            
+            preparedStmt.executeUpdate();
+
+            
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
     }
     
     public static void readEmployeeDatabase() {
