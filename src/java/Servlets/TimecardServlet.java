@@ -53,7 +53,6 @@ public class TimecardServlet extends HttpServlet {
                     String counterStr = Integer.toString(i);
                     if (request.getParameter(str+counterStr) != null){
 
-                        System.out.println(newTime.get(i).date.getClass().getName());
 
 //                        Deletes the timecard from the sql database
                         TimeCardDatabase.deleteTimecardFromDatabase(newTime.get(i).date,
@@ -62,10 +61,10 @@ public class TimecardServlet extends HttpServlet {
                                 newTime.get(i).overtimeHours);
 //                        Removes the timecard from the session array
                         newTime.remove(i);
-        //                Showing results in console 
-                        System.out.println(newTime);
-//                        Prints the size of the new results array
-                        System.out.println(newTime.size());
+                        
+                        TimeCardDatabase.readFullDatabase();
+                        System.out.println("---------");
+
         //              Updating the page
                         getServletContext().getRequestDispatcher(successUrl).forward(request, response);
 
@@ -86,13 +85,15 @@ public class TimecardServlet extends HttpServlet {
                     TimeCardDatabase.createTimecard(date, Double.valueOf(empIdString), hoursWorked, overTimeHours);
 
                     TimeCardDatabase.readFullDatabase();
+                    System.out.println("---------");
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
                     
                     break;
                 } else if (request.getParameter("editTimecard") != null) {
-                    
+                                        
                     String timeCardToEdit = request.getParameter("editTimecardNumber");
+
                     String newDate =  request.getParameter("editDate");
                     String newHoursStr = request.getParameter("editEmpHoursWorked");
                     String newOverTimeStr = request.getParameter("editEmpOverTimeHours");
@@ -100,31 +101,37 @@ public class TimecardServlet extends HttpServlet {
                     
                     int newHours = Integer.parseInt(newHoursStr);
                     int newOverTimeHours = Integer.parseInt(newOverTimeStr);
+                                        
+//                    Setting the timecard object to the new values
                     
+
                     
-                        
-                    System.out.println("Editing timecard with a table index of: " + timeCardToEdit);
-                    
+                    TimeCardDatabase.updateTimecard(newDate, 
+                            newTime.get(i).employeeId,
+                            newHours, 
+                            newOverTimeHours, 
+                            newTime.get(i).date,
+                            newTime.get(i).hoursWorked, 
+                            newTime.get(i).overtimeHours);
+                                        
                     int editIndex = Integer.parseInt(timeCardToEdit);
                     
                     
                     int arrayIndex = editIndex-1;
-                    
-                        
-      
-                    
 //                    Setting the timecard object to the new values
                     
                     newTime.get(arrayIndex).setDate(newDate);
                     newTime.get(arrayIndex).setHoursWorked(newHours);
                     newTime.get(arrayIndex).setOvertimeHours(newOverTimeHours);
                     
-                        
-                        
-                          
+                                       
+                    
+                    TimeCardDatabase.readFullDatabase();
+                    System.out.println("---------");
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
                         
+                    TimeCardDatabase.readFullDatabase();
                        
                     break;
                     

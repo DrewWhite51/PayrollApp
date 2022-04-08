@@ -73,8 +73,47 @@ public class TimeCardDatabase {
             }
     }
     
-    public static void updateTimecard(){
-        
+    public static void updateTimecard(String date, 
+            double empId, 
+            int hoursWorked, 
+            int overtimeHours,
+            String inputDate,
+            int inputHoursWorked,
+            int inputOvertimeHours){
+        try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+                  
+            String query = "UPDATE TimeCard "
+                    + "SET TimecardDate = ?, "
+                    + "EmployeeId = ?, "
+                    + "HoursWorked = ?, "
+                    + "OvertimeHours = ? "
+                    + "WHERE ("
+                    + "TimecardDate = ? and "
+                    + "EmployeeId = ? and "
+                    + "HoursWorked = ? and "
+                    + "OvertimeHours = ?)";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            
+            preparedStmt.setString(1, date);
+            preparedStmt.setDouble(2, empId);
+            preparedStmt.setInt(3,hoursWorked);
+            preparedStmt.setInt(4,overtimeHours);
+                        
+            preparedStmt.setString(5, inputDate);
+            preparedStmt.setDouble(6, empId);
+            preparedStmt.setInt(7, inputHoursWorked);
+            preparedStmt.setInt(8, inputOvertimeHours);
+            
+            preparedStmt.executeUpdate();
+
+            
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
     }
     
     public static void readFullDatabase() {
