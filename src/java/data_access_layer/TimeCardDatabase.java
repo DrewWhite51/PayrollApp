@@ -48,8 +48,29 @@ public class TimeCardDatabase {
                 
     }
     
-    public static void deleteTimecardFromDatabase(){
-        
+    public static void deleteTimecardFromDatabase(String date, double empId, int hoursWorked, int overtimeHours){
+        try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+                  
+            String query = "delete from TimeCard where (TimecardDate = ? and "
+                    + "EmployeeId = ? and "
+                    + "HoursWorked = ? and "
+                    + "OvertimeHours = ?)";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, date);
+            preparedStmt.setDouble(2, empId);
+            preparedStmt.setInt(3,hoursWorked);
+            preparedStmt.setInt(4,overtimeHours);
+            
+            preparedStmt.executeUpdate();
+
+            
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
     }
     
     public static void updateTimecard(){

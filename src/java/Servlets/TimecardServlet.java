@@ -44,18 +44,27 @@ public class TimecardServlet extends HttpServlet {
             }
             
 //          Getting timecards assocaited with the user of this session
+//          Setting the arraylist to a new arraylist to edit and add or subtract to
             ArrayList<Timecard> newTime = (ArrayList<Timecard>) request.getSession(false).getAttribute("empTimeCards");
+           
             for (int i = 0; i<newTime.size(); i++) {
-    //                Strings to read the data from the html JSTL table
+    //              Strings to read the data from the html JSTL table
                     String str = "deleteRow";
                     String counterStr = Integer.toString(i);
                     if (request.getParameter(str+counterStr) != null){
-        //             Removig the index of the timecard selected
+
+                        System.out.println(newTime.get(i).date.getClass().getName());
+
+//                        Deletes the timecard from the sql database
+                        TimeCardDatabase.deleteTimecardFromDatabase(newTime.get(i).date,
+                                newTime.get(i).employeeId, 
+                                newTime.get(i).hoursWorked,
+                                newTime.get(i).overtimeHours);
+//                        Removes the timecard from the session array
                         newTime.remove(i);
-                        
         //                Showing results in console 
                         System.out.println(newTime);
-
+//                        Prints the size of the new results array
                         System.out.println(newTime.size());
         //              Updating the page
                         getServletContext().getRequestDispatcher(successUrl).forward(request, response);
