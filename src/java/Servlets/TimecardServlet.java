@@ -7,14 +7,9 @@ package Servlets;
 
 import business_layer.Employee;
 import business_layer.Timecard;
-import data_access_layer.EmployeeDatabase;
 import data_access_layer.TimeCardDatabase;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -103,21 +98,21 @@ public class TimecardServlet extends HttpServlet {
                     int newOverTimeHours = Integer.parseInt(newOverTimeStr);
                                         
 //                    Setting the timecard object to the new values
-                    
+                                        
+
+                    int editIndex = Integer.parseInt(timeCardToEdit);
+                    int arrayIndex = editIndex-1;
 
                     
                     TimeCardDatabase.updateTimecard(newDate, 
-                            newTime.get(i).employeeId,
+                            newTime.get(arrayIndex).employeeId,
                             newHours, 
                             newOverTimeHours, 
-                            newTime.get(i).date,
-                            newTime.get(i).hoursWorked, 
-                            newTime.get(i).overtimeHours);
+                            newTime.get(arrayIndex).date,
+                            newTime.get(arrayIndex).hoursWorked, 
+                            newTime.get(arrayIndex).overtimeHours);
                                         
-                    int editIndex = Integer.parseInt(timeCardToEdit);
-                    
-                    
-                    int arrayIndex = editIndex-1;
+
 //                    Setting the timecard object to the new values
                     
                     newTime.get(arrayIndex).setDate(newDate);

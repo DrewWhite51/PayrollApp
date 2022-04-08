@@ -5,10 +5,8 @@
  */
 package data_access_layer;
 
-import business_layer.HourlyEmployee;
-import business_layer.SalaryEmployee;
+
 import business_layer.Timecard;
-import static data_access_layer.EmployeeDatabase.employee_arr;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,7 +46,8 @@ public class TimeCardDatabase {
                 
     }
     
-    public static void deleteTimecardFromDatabase(String date, double empId, int hoursWorked, int overtimeHours){
+    public static void deleteTimecardFromDatabase(String date, double empId, 
+            int hoursWorked, int overtimeHours){
         try {
                //Connect to the database
             Connection con = (Connection)  
@@ -142,7 +141,8 @@ public class TimeCardDatabase {
             }
     }
     
-    public static void createTimecard(String date, double empId, int workHours, int otHours) {
+    public static void createTimecard(String date, double empId, int workHours, 
+            int otHours) {
         try {
                //Connect to the database
             Connection con = (Connection)  
