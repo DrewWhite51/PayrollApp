@@ -83,6 +83,7 @@ public class TimecardServlet extends HttpServlet {
                     System.out.println("---------");
                     
                     getServletContext().getRequestDispatcher(successUrl).forward(request, response);
+
                     
                     break;
                 } else if (request.getParameter("editTimecard") != null) {

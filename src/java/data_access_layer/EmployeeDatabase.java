@@ -51,6 +51,53 @@ public class EmployeeDatabase {
                 
     }
     
+    
+    public static void createEmployee() {
+        
+    }
+    
+    public static void deleteEmployee() {
+        
+    }
+    
+    public static void readEmployeeDatabase() {
+        try {
+               //Connect to the database
+            Connection con = (Connection)  
+            DriverManager.getConnection("jdbc:derby://localhost:1527/PayrollSystemDB","CIS640","cis640");
+               //Create a ResultSet
+            Statement cmd =  con.createStatement();
+            ResultSet rs = cmd.executeQuery("SELECT * FROM Employee");
+            while (rs.next()) {
+                String firstNames = rs.getString("FirstName");
+                String lastNames = rs.getString("LastName");
+                int employeeIds = rs.getInt("EmployeeId");
+                double ssns = rs.getDouble("SSN");
+                String userIds = rs.getString("UserId");
+                String password = rs.getString("Password");
+                double hourlyRate = rs.getDouble("HourlyRate");
+                double overtimeRate = rs.getDouble("OvertimeRate");
+                double salary =rs.getDouble("Salary");
+                
+                if (hourlyRate == 0) {
+                    SalaryEmployee salEmp = new SalaryEmployee(salary,firstNames,
+                            lastNames,employeeIds,ssns,userIds,password);
+                    System.out.println(salEmp.toString());
+                } else {
+                    HourlyEmployee hourEmp = new HourlyEmployee(hourlyRate,
+                            overtimeRate,firstNames,lastNames,employeeIds,ssns,
+                            userIds,password);
+                    
+                    System.out.println(hourEmp.toString());
+                } 
+                
+ 
+            }
+            } catch(SQLException error) {
+                System.out.println("ERROR CAUGHT");
+                System.err.println("Error:" + error.toString());
+            }
+    }
 
 
 

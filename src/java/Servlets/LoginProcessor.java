@@ -38,6 +38,8 @@ public class LoginProcessor extends HttpServlet {
            TimeCardDatabase.init();
            
            
+           EmployeeDatabase.readEmployeeDatabase();
+           
            
 
            
@@ -60,10 +62,7 @@ public class LoginProcessor extends HttpServlet {
                      currentUser = EmployeeDatabase.get_employee_by_id(i);
 //                    Setting timecards for the current user
                      ArrayList<Timecard> empTimeCards = TimeCardDatabase.get_timecards_by_employee_id(currentUser.employeeId);
-                     
-                     System.out.println(empTimeCards);
-                     System.out.println(empTimeCards.size());
-                     
+                    
 //                     Create a sesssion for the user
                      HttpSession httpSession = request.getSession();
 //                     Setting currentUser attribute
